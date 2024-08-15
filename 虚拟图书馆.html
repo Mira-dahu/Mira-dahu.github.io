@@ -1,0 +1,246 @@
+<html><head><base href="https://localhost%E5%B0%86%E6%A8%A1%E5%9D%97%E5%B7%A6%E5%8F%B3%E5%88%86%E5%8C%BA%EF%BC%8C%E7%8E%B0%E5%9C%A8%E7%9A%84%E4%B8%8A%E4%B8%8B%E5%B8%83%E5%B1%80%E4%B8%8D%E5%A4%AA%E5%A5%BD%E7%9C%8B,%E5%B0%86%E9%98%85%E8%AF%BB%E5%BB%BA%E8%AE%AE%E4%B9%9F%E6%94%BE%E5%9C%A8%E5%8F%B3%E8%BE%B9%E7%9A%84%E5%88%86%E5%8C%BA%E5%86%85%EF%BC%8C%E5%8F%A6%E5%A4%96%E6%AD%A3%E5%9C%A8%E8%AF%BB%E5%92%8C%E6%B7%BB%E5%8A%A0%E4%B9%A6%E6%A8%A1%E5%9D%97%E7%9A%84%E6%A0%87%E8%AE%B0%E4%B8%BA%E5%B7%B2%E8%AF%BB%E6%8C%89%E9%92%AE%E5%8F%98%E6%88%90%E7%BA%A2%E8%89%B2%E6%88%96%E8%80%85%E9%BB%84%E8%89%B2%E4%B8%8E%E6%95%B4%E4%BD%93%E5%B8%83%E5%B1%80%E5%8C%B9%E9%85%8D%E3%80%82%E5%B0%86%E6%83%B3%E8%AF%BB%E6%A8%A1%E5%9D%97%E6%95%B4%E4%BD%93%E5%90%91%E4%B8%8B%E7%A7%BB%E5%8A%A8%EF%BC%8C%E4%BB%A4%E6%88%91%E7%9A%84%E8%99%9A%E6%8B%9F%E5%9B%BE%E4%B9%A6%E9%A6%86%E8%BF%99%E4%B8%80%E8%A1%8C%E4%B8%8D%E8%A6%81%E6%9C%89%E5%88%AB%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%8C">
+<title>我的虚拟图书馆 - 左右分区布局</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --primary-color: #f3d2c1;
+  --secondary-color: #8bd3dd;
+  --accent-color: #f582ae;
+  --text-color: #172c66;
+  --background-color: #fef6e4;
+  --mark-read-color: #ffd166;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.left-column, .right-column {
+  flex: 1;
+  padding: 0 20px;
+}
+
+h1, h2, h3 {
+  color: var(--accent-color);
+}
+
+.library-section {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.book-card {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-card h3 {
+  margin-top: 0;
+  color: var(--text-color);
+}
+
+.progress-bar {
+  background-color: var(--secondary-color);
+  height: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.progress {
+  background-color: var(--accent-color);
+  height: 100%;
+  border-radius: 5px;
+  width: 0;
+}
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-book-form input, .add-book-form select, .add-book-form button {
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+}
+
+.add-book-form button {
+  background-color: var(--accent-color);
+  color: white;
+  cursor: pointer;
+}
+
+.recommendations {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.mark-read-button {
+  background-color: var(--mark-read-color);
+  color: var(--text-color);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#page-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .left-column, .right-column {
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+  <h1 id="page-title">我的虚拟图书馆</h1>
+  <div class="container">
+    <div class="left-column">
+      <div class="library-section">
+        <h2>添加新书</h2>
+        <form class="add-book-form">
+          <input type="text" id="book-title" placeholder="书名" required>
+          <input type="text" id="book-author" placeholder="作者" required>
+          <select id="book-status">
+            <option value="reading">正在读</option>
+            <option value="to-read">想读</option>
+            <option value="read">已读</option>
+          </select>
+          <button type="submit">添加</button>
+        </form>
+      </div>
+
+      <div class="library-section">
+        <h2>正在读</h2>
+        <div class="book-list" id="reading-list"></div>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <div class="library-section recommendations">
+        <h2>阅读建议</h2>
+        <div id="recommendations"></div>
+      </div>
+
+      <div class="library-section">
+        <h2>想读</h2>
+        <div class="book-list" id="to-read-list"></div>
+      </div>
+
+      <div class="library-section">
+        <h2>已读</h2>
+        <div class="book-list" id="read-list"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+let books = {
+  reading: [],
+  'to-read': [],
+  read: []
+};
+
+function addBook(title, author, status) {
+  const book = { title, author, progress: status === 'read' ? 100 : 0 };
+  books[status].push(book);
+  updateBookList(status);
+  updateRecommendations();
+}
+
+function updateBookList(status) {
+  const listElement = document.getElementById(`${status}-list`);
+  listElement.innerHTML = '';
+  books[status].forEach((book, index) => {
+    const bookElement = document.createElement('div');
+    bookElement.className = 'book-card';
+    bookElement.innerHTML = `
+      <h3>${book.title}</h3>
+      <p>作者: ${book.author}</p>
+      ${status === 'reading' ? `
+        <input type="range" min="0" max="100" value="${book.progress}" 
+               onchange="updateProgress(${index}, this.value)">
+        <div class="progress-bar"><div class="progress" style="width: ${book.progress}%"></div></div>
+      ` : ''}
+      ${status !== 'read' ? `<button class="mark-read-button" onclick="moveBook(${index}, '${status}', 'read')">标记为已读</button>` : ''}
+    `;
+    listElement.appendChild(bookElement);
+  });
+}
+
+function updateProgress(index, progress) {
+  books.reading[index].progress = parseInt(progress);
+  updateBookList('reading');
+}
+
+function moveBook(index, fromStatus, toStatus) {
+  const book = books[fromStatus].splice(index, 1)[0];
+  book.progress = toStatus === 'read' ? 100 : 0;
+  books[toStatus].push(book);
+  updateBookList(fromStatus);
+  updateBookList(toStatus);
+  updateRecommendations();
+}
+
+function updateRecommendations() {
+  const recommendationsElement = document.getElementById('recommendations');
+  const recommendations = [
+    "《百年孤独》 - 加西亚·马尔克斯",
+    "《1984》 - 乔治·奥威尔",
+    "《小王子》 - 安托万·德·圣-埃克苏佩里"
+  ];
+  recommendationsElement.innerHTML = recommendations.map(rec => `<p>${rec}</p>`).join('');
+}
+
+document.querySelector('.add-book-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const title = document.getElementById('book-title').value;
+  const author = document.getElementById('book-author').value;
+  const status = document.getElementById('book-status').value;
+  addBook(title, author, status);
+  this.reset();
+});
+
+// 初始化一些示例书籍
+addBook("置身事内", "兰小欢", "reading");
+addBook("人类简史", "尤瓦尔·赫拉利", "to-read");
+addBook("三体", "刘慈欣", "read");
+
+updateRecommendations();
+</script>
+</body></html>
